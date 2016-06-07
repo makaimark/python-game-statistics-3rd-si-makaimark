@@ -113,6 +113,3 @@ def get_date_ordered(file_name):
         date_ordered_list.append(i[0])
     return date_ordered_list
 printing.print_function("get_date_ordered", get_date_ordered("game_stat.txt"))
-
-
-export.file_export("export.txt", "Counter-Strike")
