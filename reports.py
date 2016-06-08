@@ -105,6 +105,7 @@ def when_was_top_sold_fps(file_name):
         if line[3] == "First-person shooter" and float(line[1]) > float(top_sold):
             year = line[2]
             top_sold = line[1]
+    if year == 0:
+        raise ValueError("could not find First-person shooter")
     return int(year)
-    raise ValueError("could not find First-person shooter in %r" % (string))
 printing.print_function("when_was_top_sold_fps", when_was_top_sold_fps("game_stat.txt"))
