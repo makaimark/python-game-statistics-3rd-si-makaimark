@@ -1,5 +1,4 @@
 import export
-import printing
 from operator import itemgetter
 # Report functions
 
@@ -22,7 +21,6 @@ def get_most_played(file_name):
             number_of_sold = float(line[1])
             most_played = line[0]
     return most_played
-printing.print_function("get_most_played", get_most_played("game_stat.txt"))
 
 
 # How many copies have been sold total?
@@ -32,7 +30,6 @@ def sum_sold(file_name):
     for line in opened_file:
         total_sold = total_sold + float(line[1])
     return total_sold
-printing.print_function("sum_sold", sum_sold("game_stat.txt"))
 
 
 # What is the average selling?
@@ -46,7 +43,6 @@ def get_selling_avg(file_name):
         summa = summa + float(line[1])
     average = summa / counter
     return average
-printing.print_function("get_selling_avg", get_selling_avg("game_stat.txt"))
 
 
 # How many characters long is the longest title?
@@ -57,7 +53,6 @@ def count_longest_title(file_name):
         if len(line[0]) > counter:
             counter = len(line[0])
     return counter
-printing.print_function("count_longest_title", count_longest_title("game_stat.txt"))
 
 
 # What is the average of the release dates?
@@ -72,7 +67,6 @@ def get_date_avg(file_name):
     average = summa / counter
     average = round(average, 0)
     return average
-printing.print_function("get_date_avg", get_date_avg("game_stat.txt"))
 
 
 # What properties has a game?
@@ -84,7 +78,6 @@ def get_game(file_name, title):
                 line[2] = int(line[2])
                 line[4] = line[4].replace('\n', "")
                 return line
-printing.print_function("get_game", get_game("game_stat.txt", "Counter-Strike"))
 
 
 # How many games are there grouped by genre?
@@ -98,7 +91,6 @@ def count_grouped_by_genre(file_name):
         else:
             dictionary[line[3]] += 1
     return dictionary
-printing.print_function("count_grouped_by_genre", count_grouped_by_genre("game_stat.txt"))
 
 
 # What is the date ordered list of the games in descending order?
@@ -112,4 +104,3 @@ def get_date_ordered(file_name):
     for i in temp_dict:
         date_ordered_list.append(i[0])
     return date_ordered_list
-printing.print_function("get_date_ordered", get_date_ordered("game_stat.txt"))
