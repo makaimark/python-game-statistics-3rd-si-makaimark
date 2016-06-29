@@ -1,7 +1,5 @@
 import sys
 import export
-import printing
-# Report functions
 
 
 def file_reader(file_name):
@@ -14,27 +12,20 @@ def file_reader(file_name):
 
 # How many games are in the file? OK
 def count_games(file_name):
-    i = 0
-    f = open(file_name, "r")
-    for line in f:
-        i += 1
-    f.close()
-    return i
-printing.print_function("count_games", count_games("game_stat.txt"))
-# export.export("result.txt", count_games("game_stat.txt"))
+    counter = 0
+    with open(file_name, "r")as f:
+        for line in f:
+            counter += 1
+    return counter
 
 
 # Is there a game from a given year? OK
 def decide(file_name, year):
-    f = open(file_name, "r")
-    for line in f.readlines():
-        if str(year) in line:
-            f.close()
-            return True
-            break
-    f.close()
+    with open(file_name, "r")as f:
+        for line in f.readlines():
+            if str(year) in line:
+                return True
     return False
-printing.print_function("decide", decide("game_stat.txt", 2004))
 
 
 # Which was the latest game? ok
@@ -47,7 +38,6 @@ def get_latest(file_name):
             year = line[2]
             latest_game = line[0]
     return latest_game
-printing.print_function("get_latest", get_latest("game_stat.txt"))
 
 
 # How many games do we have by genre? ok
@@ -58,7 +48,6 @@ def count_by_genre(file_name, genre):
         if line[3] == genre:
             counter += 1
     return counter
-printing.print_function("count_by_genre", count_by_genre("game_stat.txt", "RPG"))
 
 
 # What is the line number of the given game (by title)? ok
@@ -70,7 +59,6 @@ def get_line_number_by_title(file_name, title):
         if line[0] == title:
             return line_number
     raise ValueError("could not find %r in %r" % (title, file_name))
-printing.print_function("get_line_number_by_title", get_line_number_by_title("game_stat.txt", "Crysis"))
 
 
 # What is the alphabetical ordered list of the titles? ok
@@ -81,7 +69,6 @@ def sort_abc(file_name):
         list_of_films.append(line[0])
     list_of_films.sort()
     return list_of_films
-printing.print_function("sort_abc", sort_abc("game_stat.txt"))
 
 
 # What are the genres? It works, but the test.py drop a failure
@@ -93,7 +80,6 @@ def get_genres(file_name):
             genres.append(line[3])
     genres.sort(key=lambda v: v.upper())
     return genres
-printing.print_function("get_genres", get_genres("game_stat.txt"))
 
 
 # What is the release date of the top sold "First-person shooter" game? ok
@@ -108,4 +94,3 @@ def when_was_top_sold_fps(file_name):
     if year == 0:
         raise ValueError("could not find First-person shooter")
     return int(year)
-printing.print_function("when_was_top_sold_fps", when_was_top_sold_fps("game_stat.txt"))
