@@ -12,19 +12,16 @@ def file_reader(file_name):
 
 # How many games are in the file? OK
 def count_games(file_name):
-    counter = 0
-    with open(file_name, "r")as f:
-        for line in f:
-            counter += 1
-    return counter
+    opened_text = file_reader(file_name)
+    return len(opened_text)
 
 
 # Is there a game from a given year? OK
 def decide(file_name, year):
-    with open(file_name, "r")as f:
-        for line in f.readlines():
-            if str(year) in line:
-                return True
+    opened_text = file_reader(file_name)
+    for line in opened_text:
+        if str(year) in line:
+            return True
     return False
 
 
